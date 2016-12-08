@@ -356,7 +356,7 @@ if(!class_exists( 'STUser_f' )) {
 				$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $order_id));
 						
 				
-				/**
+				
                 if( empty( $select_account ) ){
                     $cancel_data = array(
                         'order_id' => $order_id,
@@ -606,9 +606,7 @@ if(!class_exists( 'STUser_f' )) {
                     }
                     
                 }
-				**/
-
-            }
+			}
             echo json_encode( array(
                 'status' => 1,
                 'message' => '<div class="text-danger">'. __('You can not cancel this booking', ST_TEXTDOMAIN) . '</div>',
@@ -6306,11 +6304,17 @@ if(!class_exists( 'STUser_f' )) {
 					/////CANCEL REQUEST by Clyde for woocommerce
 					if($value->type == 'woocommerce' && (($value->status==='wc-on-hold') || ($value->status==='wc-processing') || ($value->status==='wc-pending-payment')) ){
 						//echo 'test';
-						//echo $value->order_item_id;
+						echo $value->order_item_id;
 						//echo "";
 						//echo $value->status. " ";
-						//echo $url . "<br><br>";			
-					    $action .= '<a  data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
+						echo "<br>";		
+						//echo $order_id;	
+						
+						//enter url for cancelling booking added by clyde
+						$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $value->wc_order_id));
+						echo $url;
+						
+					    $action .= '<a data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
 					}
 					
 
