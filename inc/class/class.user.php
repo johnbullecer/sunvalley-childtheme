@@ -6194,14 +6194,10 @@ if(!class_exists( 'STUser_f' )) {
             $st_is_woocommerce_checkout = apply_filters('st_is_woocommerce_checkout',false);
             $order_statuses = array();
             if($st_is_woocommerce_checkout){
-                /* modified by clyde to show only 2 additional tabs in booking history
+                // modified by clyde to show only 2 additional tabs in booking history
 				if(function_exists('wc_get_order_statuses')){
                     $order_statuses= wc_get_order_statuses();
-                } */
-				$order_statuses = array(
-                    'wc-completed' => __( 'Completed', ST_TEXTDOMAIN ),
-                    'wc-cancelled'  => __( 'Cancelled', ST_TEXTDOMAIN ),
-                );
+                } 
             }else{
                 $order_statuses = array(
                     'pending'    => __( 'Pending', ST_TEXTDOMAIN ),
@@ -6353,23 +6349,23 @@ if(!class_exists( 'STUser_f' )) {
                         if(!empty($data_status[$value->status])){
                             $status_string = $data_status[$value->status];
                             if( isset( $value->cancel_refund_status ) && $value->cancel_refund_status == 'pending'){
-                                $status_string = __('Cancelling', ST_TEXTDOMAIN);
+                                $status_string = __('Cancelling', ST_TEXTDOMAIN);								
                             }
                         }
+						
                         global $wpdb;
                         $address = get_post_meta( $id_item, 'address', true);
                         if(get_post_type($id_item) == 'st_cars'){
                             $address = get_post_meta($id_item, 'cars_address', true);
                         }
-						//added line 6370 to add booking id and link to the order by clyde
+						//added line 6367 to add booking-id and link to the order by clyde
                         $html .= '
                             <tr class="' . $id_item . '">
                                 <td class="booking-history-type ' . get_post_type( $id_item ) . '">
                                    ' . $this->get_icon_type_order_item( $id_item ) . '
                                 </td>
-								<td class="booking-history-title"> <a href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id . '">' . $value->wc_order_id . '</a></td>
+								<td class="booking-id"> <a href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="Click to open booking details">' . $value->wc_order_id . '</a></td>
 								<td class="booking-history-title"> <a href="' . $this->get_link_order_item( $id_item ) . '">' . $this->get_title_order_item( $id_item ) . '</a></td>
-                                <td class="hidden-xs" style="">' . $address . '</td>
                                 <td class="hidden-xs" >' .date_i18n( $format ,strtotime( $value->created) ) . '</td>
                                 <td class="hidden-xs" >' . $date . '</td>
                                 <td class="" >' . TravelHelper::format_money_raw($price,$currency) . '</td>
