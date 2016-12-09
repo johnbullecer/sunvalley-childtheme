@@ -76,7 +76,8 @@ $data_order_statuses = STUser_f::_get_order_statuses();
                         <table class="table table-bordered table-striped table-booking-history">
                             <thead>
                             <tr>
-                                <th><?php st_the_language('user_type')?></th>
+                                <th><?php st_the_language('user_type')?></th>								
+								<th><?php st_the_language('user_booking_id')?></th>
                                 <th><?php st_the_language('user_title')?></th>
                                 <th class="hidden-xs"><?php st_the_language('user_location') ?></th>
                                 <th class="hidden-xs"><?php st_the_language('user_order_date')?></th>
