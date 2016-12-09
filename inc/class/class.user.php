@@ -218,14 +218,14 @@ if(!class_exists( 'STUser_f' )) {
                     echo json_encode(array(
                         'status' => 1,
                         'message' => $message
-                    )); die;
+                    )); exit(0);
 
                 }
             }
             echo json_encode( array(
                 'status' => 1,
                 'message' => '<div class="text-danger">'. __('Have an error when get data. Try again!', ST_TEXTDOMAIN) . '</div>',
-            ) ); die;
+            ) ); exit(0);
         }
 
         public function st_get_refund_infomation(){
@@ -241,7 +241,7 @@ if(!class_exists( 'STUser_f' )) {
                         'step' => 'st_check_complete_refund',
                         'order_id' => $order_id,
                         'order_encrypt' => $order_encrypt
-                    )); die;
+                    )); exit(0);
                 }
             }
             echo json_encode( array(
@@ -250,7 +250,7 @@ if(!class_exists( 'STUser_f' )) {
                 'step' => '',
                 'order_id' => $order_id,
                 'order_encrypt' => $order_encrypt
-            ) ); die;
+            ) ); exit(0);
         }
 
         public function st_get_cancel_booking_step_1(){
@@ -274,7 +274,7 @@ if(!class_exists( 'STUser_f' )) {
                     'order_id' => $order_id,
                     'order_encrypt' => $order_encrypt,
                     'step' => $step
-                )); die;
+                )); exit(0);
             }
 			//changed error message added by clyde
             echo json_encode( array(
@@ -283,7 +283,7 @@ if(!class_exists( 'STUser_f' )) {
                 'order_id' => $order_id,
                 'order_encrypt' => $order_encrypt,
                 'step' => ''
-            ) ); die;
+            ) ); exit(0);
         }
         public function st_get_cancel_booking_step_2(){
             $order_id = STInput::request('order_id','');
@@ -303,7 +303,7 @@ if(!class_exists( 'STUser_f' )) {
                     'order_id' => $order_id,
                     'order_encrypt' => $order_encrypt,
                     'step' => 'next-to-step-3'
-                )); die;
+                )); exit(0);
             }
 			//changed error message added by clyde
             echo json_encode( array(
@@ -313,7 +313,7 @@ if(!class_exists( 'STUser_f' )) {
                 'order_encrypt' => $order_encrypt,
                 'step' => ''
 
-            ) ); die;
+            ) ); exit(0);
         }
         public function st_get_cancel_booking_step_3(){
             global $wpdb;
@@ -353,7 +353,7 @@ if(!class_exists( 'STUser_f' )) {
                 $enable_email_cancel = st()->get_option('enable_email_cancel', 'on');
 				
 				//enter url for cancelling booking added by clyde
-				$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $order_id));
+				//$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $wc_order_id));
 						
 				
 				
@@ -394,7 +394,7 @@ if(!class_exists( 'STUser_f' )) {
                             'status' => 1,
                             'message' => $message,
                             'step' => ''
-                        )); die;
+                        )); exit(0);
                     }
                 }
 				
@@ -449,7 +449,7 @@ if(!class_exists( 'STUser_f' )) {
                             'status' => 1,
                             'message' => $message,
                             'step' => ''
-                        )); die;
+                        )); exit(0);
                     }
 
                 }
@@ -500,7 +500,7 @@ if(!class_exists( 'STUser_f' )) {
                             'status' => 1,
                             'message' => $message,
                             'step' => ''
-                        )); die;
+                        )); exit(0);
                     }
                     
                 }
@@ -552,7 +552,7 @@ if(!class_exists( 'STUser_f' )) {
                             'status' => 1,
                             'message' => $message,
                             'step' => ''
-                        )); die;
+                        )); exit(0);
                     }
                     
                 }
@@ -602,7 +602,7 @@ if(!class_exists( 'STUser_f' )) {
                             'status' => 1,
                             'message' => $message,
                             'step' => ''
-                        )); die;
+                        )); exit(0);
                     }
                     
                 }
@@ -612,7 +612,7 @@ if(!class_exists( 'STUser_f' )) {
                 'message' => '<div class="text-danger">'. __('You can not cancel this booking', ST_TEXTDOMAIN) . '</div>',
                 'step' => ''
 
-            ) ); die;
+            ) ); exit(0);
         }
 
         public function _send_email_refund( $order_id = '', $type = 'success'){
@@ -713,7 +713,7 @@ if(!class_exists( 'STUser_f' )) {
                     'headers'=>$headers
                 )
             ));
-            die();
+            exit(0);
         }
 
         // disable admin bar only patner
@@ -942,7 +942,7 @@ if(!class_exists( 'STUser_f' )) {
                     'erro_msg'=>$erro_msg
                 )
             );
-            die();
+            exit(0);
         }
         function _update_certificate_user(){
 
@@ -1780,7 +1780,7 @@ if(!class_exists( 'STUser_f' )) {
                     'icon'   => '<i class="fa fa-heart"></i>'
                 ) );
             }
-            die();
+            exit(0);
         }
 
         function st_remove_wishlist_func()
@@ -1817,7 +1817,7 @@ if(!class_exists( 'STUser_f' )) {
                 ) );
             }
 
-            die();
+            exit(0);
         }
 
         function st_load_more_wishlist_func()
@@ -1855,7 +1855,7 @@ if(!class_exists( 'STUser_f' )) {
                 'msg'      => $data_html ,
                 'data_per' => $data_next + $data_per
             ) );
-            die();
+            exit(0);
         }
 
         function upload_image()
@@ -1957,7 +1957,7 @@ if(!class_exists( 'STUser_f' )) {
                     'content' => 'Delete not successfully'
                 ) );
             }
-            die();
+            exit(0);
         }
 
         static function get_list_layout()
@@ -2286,7 +2286,7 @@ if(!class_exists( 'STUser_f' )) {
                         update_post_meta( $post_id , 'is_featured' , STInput::request('is_featured') );
 
                         update_post_meta( $post_id , 'card_accepted' , STInput::request('card_accepted') );
-                        //die();
+                        //exit(0);
                         //tab price
                         update_post_meta( $post_id , 'is_auto_caculate' , STInput::request( 'is_auto_caculate' ) );
                         update_post_meta( $post_id , 'price_avg' , STInput::request( 'price_avg' ) );
@@ -2515,7 +2515,7 @@ if(!class_exists( 'STUser_f' )) {
                         update_post_meta( $post_id , 'allow_full_day' , STInput::request('allow_full_day','off'));
                         update_post_meta( $post_id , 'check_in_time' , STInput::request('check_in_time',''));
                         update_post_meta( $post_id , 'check_out_time' , STInput::request('check_out_time',''));
-                        //die();
+                        //exit(0);
                         //tab price
                         update_post_meta( $post_id , 'is_auto_caculate' , STInput::request( 'is_auto_caculate' ) );
                         update_post_meta( $post_id , 'price_avg' , STInput::request( 'price_avg' ) );
@@ -6194,9 +6194,14 @@ if(!class_exists( 'STUser_f' )) {
             $st_is_woocommerce_checkout = apply_filters('st_is_woocommerce_checkout',false);
             $order_statuses = array();
             if($st_is_woocommerce_checkout){
-                if(function_exists('wc_get_order_statuses')){
+                /* modified by clyde to show only 2 additional tabs in booking history
+				if(function_exists('wc_get_order_statuses')){
                     $order_statuses= wc_get_order_statuses();
-                }
+                } */
+				$order_statuses = array(
+                    'wc-completed' => __( 'Completed', ST_TEXTDOMAIN ),
+                    'wc-cancelled'  => __( 'Cancelled', ST_TEXTDOMAIN ),
+                );
             }else{
                 $order_statuses = array(
                     'pending'    => __( 'Pending', ST_TEXTDOMAIN ),
@@ -6303,16 +6308,15 @@ if(!class_exists( 'STUser_f' )) {
 					}
 					/////CANCEL REQUEST by Clyde for woocommerce
 					if($value->type == 'woocommerce' && (($value->status==='wc-on-hold') || ($value->status==='wc-processing') || ($value->status==='wc-pending-payment')) ){
-						//echo 'test';
-						echo $value->order_item_id;
-						//echo "";
+						//echo $value->order_item_id;
 						//echo $value->status. " ";
-						echo "<br>";		
+						//echo "<br>";		
 						//echo $order_id;	
+						echo get_post_meta( $value->order_item_id, 'cancel_data', true);
 						
 						//enter url for cancelling booking added by clyde
-						$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $value->wc_order_id));
-						echo $url;
+						//$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $value->wc_order_id));
+						//echo $url;
 						
 					    $action .= '<a data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
 					}
@@ -6384,7 +6388,7 @@ if(!class_exists( 'STUser_f' )) {
                     'data_per' => $paged + 1 ,
                     'status'   => $status
                 ) );
-                die();
+                exit(0);
             } else {
                 return $html;
             }
@@ -6567,7 +6571,7 @@ if(!class_exists( 'STUser_f' )) {
                     } else {
                         wp_safe_redirect( home_url() );
                     }
-                    die;
+                    exit(0);
                     //wp_safe_redirect();
                 } else {
                     if(!get_post_status( STInput::request( 'item_id' ) )) {
@@ -6577,7 +6581,7 @@ if(!class_exists( 'STUser_f' )) {
                         } else {
                             wp_safe_redirect( home_url() );
                         }
-                        die;
+                        exit(0);
                     }
                 }
             }
@@ -6606,7 +6610,7 @@ if(!class_exists( 'STUser_f' )) {
                         }
 
                         wp_safe_redirect( get_permalink( STInput::post( 'comment_post_ID' ) ) );
-                        die;
+                        exit(0);
                     }
 
                 }
@@ -7465,7 +7469,7 @@ if(!class_exists( 'STUser_f' )) {
                     'data_status' => $data_post->post_status
                 ) );
             }
-            die();
+            exit(0);
         }
 
         /*
@@ -8103,7 +8107,7 @@ if(!class_exists( 'STUser_f' )) {
                 'bc_title'=>'<span class="btn_single_all_time">'.__("All Time",ST_TEXTDOMAIN).'</span> / <span class="active">'.$year.'</span>',
             );
             echo json_encode($json);
-            die();
+            exit(0);
         }
         /***
          * SINGLE TIME
@@ -8149,7 +8153,7 @@ if(!class_exists( 'STUser_f' )) {
             ));
 
 
-            die();
+            exit(0);
         }
         /***
          * ALL TIME
@@ -8373,7 +8377,7 @@ if(!class_exists( 'STUser_f' )) {
                 'bc_title'=>'<span class="btn_all_time">'.__("All Time",ST_TEXTDOMAIN).'</span> / <span class="active">'.$year.'</span>',
             );
             echo json_encode($json);
-            die();
+            exit(0);
         }
         /***
          * ALL TIME
@@ -8413,7 +8417,7 @@ if(!class_exists( 'STUser_f' )) {
                 'bc_title'=>'<span class="btn_all_time">'.__("All Time",ST_TEXTDOMAIN).'</span> / <span class="btn_all_time_year">'.$year .'</span> / <span class="active">'.$dt->format('F').'</span>',
                 'id_rand'=>strtotime('now')
             ));
-            die();
+            exit(0);
         }
         /***
          *
@@ -8771,7 +8775,7 @@ if(!class_exists( 'STUser_f' )) {
 
             if($st_ajax == '1'){
                 echo json_encode($result);
-                die();
+                exit(0);
             }else{
                 return $result;
             }
@@ -8822,7 +8826,7 @@ if(!class_exists( 'STUser_f' )) {
             }
             echo json_encode(array('error' => $check_error, 'message'=> $status_error_login, 'need_link' => $need_link ));
             unset($status_error_login);
-            die();
+            exit(0);
 
         }
 
@@ -8856,7 +8860,7 @@ if(!class_exists( 'STUser_f' )) {
             }
 
             echo json_encode(array('error' => $error ,'notice' => $notice));
-            die;
+            exit(0);
         }
 
     }
