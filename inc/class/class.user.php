@@ -6286,7 +6286,7 @@ if(!class_exists( 'STUser_f' )) {
                     $data[ 'item_id' ] = $id_item;
 					
 					//added by clyde to add View button
-					$action = '<a class="btn btn-xs btn-primary user_write_review" href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="Click to open booking details">' . __( "View" , ST_TEXTDOMAIN ) . '</a>';
+					$action = '<a class="btn btn-xs btn-primary user_write_review" href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="'. __('Click to view booking details', ST_TEXTDOMAIN). '">' . __( "View" , ST_TEXTDOMAIN ) . '</a>';
 					
                    
 					if(TravelerObject::check_cancel_able($value->order_item_id) && $value->type == 'normal_booking' ){
@@ -6368,7 +6368,7 @@ if(!class_exists( 'STUser_f' )) {
 						//removed item type 1st column because it doesnt make sense
                         $html .= '
                             <tr class="' . $id_item . '">                                
-								<td class="booking-id"> <a href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="Click to open booking details">' . $value->wc_order_id . '</a></td>
+								<td class="booking-id"> <a href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="'. __('Click to view booking details', ST_TEXTDOMAIN) .'">' . $value->wc_order_id . '</a></td>
 								<td class="booking-history-title"> <a href="' . $this->get_link_order_item( $id_item ) . '">' . $this->get_title_order_item( $id_item ) . '</a></td>
                                 <td class="hidden-xs" >' .date_i18n( $format ,strtotime( $value->created) ) . '</td>
                                 <td class="hidden-xs" >' . $date . '</td>
