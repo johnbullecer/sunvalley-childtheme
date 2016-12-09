@@ -6361,12 +6361,14 @@ if(!class_exists( 'STUser_f' )) {
                         if(get_post_type($id_item) == 'st_cars'){
                             $address = get_post_meta($id_item, 'cars_address', true);
                         }
+						//added line 6370 to add booking id and link to the order by clyde
                         $html .= '
                             <tr class="' . $id_item . '">
                                 <td class="booking-history-type ' . get_post_type( $id_item ) . '">
                                    ' . $this->get_icon_type_order_item( $id_item ) . '
                                 </td>
-                                <td class="booking-history-title"> <a href="' . $this->get_link_order_item( $id_item ) . '">' . $this->get_title_order_item( $id_item ) . '</a></td>
+								<td class="booking-history-title"> <a href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id . '">' . $value->wc_order_id . '</a></td>
+								<td class="booking-history-title"> <a href="' . $this->get_link_order_item( $id_item ) . '">' . $this->get_title_order_item( $id_item ) . '</a></td>
                                 <td class="hidden-xs" style="">' . $address . '</td>
                                 <td class="hidden-xs" >' .date_i18n( $format ,strtotime( $value->created) ) . '</td>
                                 <td class="hidden-xs" >' . $date . '</td>
