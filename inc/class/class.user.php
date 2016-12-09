@@ -6268,13 +6268,15 @@ if(!class_exists( 'STUser_f' )) {
                                                             {$where}
                          ORDER BY id DESC LIMIT {$offset},{$limit}
             ";
-            $pageposts = $wpdb->get_results( $querystr , OBJECT );
+			$pageposts = $wpdb->get_results( $querystr , OBJECT );
+			//added by clyde
+			//echo json_encode($pageposts);
             $html = '';
 
             if(!empty($pageposts)){
                 foreach($pageposts as $key=>$value){
                     $id_item         = $value->st_booking_id;
-                    /////////////////// REVIEW //////////////////
+                    /////////////////// ACTIONS, REVIEW //////////////////
 
                     $action          = '';
                     $action_cancel = '';
@@ -6282,25 +6284,18 @@ if(!class_exists( 'STUser_f' )) {
                     $user_url          = st()->get_option( 'page_my_account_dashboard' );
                     $data[ 'sc' ]      = 'write_review';
                     $data[ 'item_id' ] = $id_item;
-
-                    if(STReview::review_check($id_item) =='true') {
-                        $action = '<a class="btn btn-xs btn-primary" class="user_write_review" href="' . st_get_link_with_search( get_permalink( $user_url ) , array(
-                                'sc' ,
-                                'item_id'
-                            ) , $data ) . '">' . st_get_language( 'user_write_review' ) . '</a>';
-
-                    }
-                    else {
-                        $action = "<p style='display: none'>".STReview::review_check($id_item)."</p>" ;
-                    }
+					
+					//added by clyde to add View button
+					$action = '<a class="btn btn-xs btn-primary user_write_review" href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="Click to open booking details">' . __( "View" , ST_TEXTDOMAIN ) . '</a>';
+					
+                   
 					if(TravelerObject::check_cancel_able($value->order_item_id) && $value->type == 'normal_booking' ){
 						$url=add_query_arg(array(
 							'sc'=>'booking-history',
 							'st_action'=>'cancel_booking',
 							'order_item_id'=>$value->order_item_id
 						),get_permalink($user_url));
-						/*$action .= sprintf("<a onclick='return confirm(\"%s\")' class='btn btn-xs btn-primary mt10' href='%s'>%s</a>",__('Are you sure?',ST_TEXTDOMAIN),$url,__('Cancel Booking',ST_TEXTDOMAIN)) ;*/
-                        $action .= '<a  data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
+						$action .= '<p><a  data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a><p>';
 					}
 					/////CANCEL REQUEST by Clyde for woocommerce
 					if($value->type == 'woocommerce' && (($value->status==='wc-on-hold') || ($value->status==='wc-processing') || ($value->status==='wc-pending-payment')) ){
@@ -6314,10 +6309,21 @@ if(!class_exists( 'STUser_f' )) {
 						//$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $value->wc_order_id));
 						//echo $url;
 						
-					    $action .= '<a data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
+					    $action .= '<p><a data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a><p>';
 					}
 					
+					//write a review - moved by clyde
+					 if(STReview::review_check($id_item) =='true') {
+                        $action .= '<p><a class="btn btn-xs btn-primary user_write_review" href="' . st_get_link_with_search( get_permalink( $user_url ) , array(
+                                'sc' ,
+                                'item_id'
+                            ) , $data ) . '">' . st_get_language( 'user_write_review' ) . '</a></p>';
 
+                    }
+                    else {
+                        $action = "<p style='display: none'>".STReview::review_check($id_item)."</p>" ;
+                    }
+					
                     /////////////////// DATE //////////////////
                     $check_in        = $value->check_in;
                     $check_out       = $value->check_out;
@@ -6348,7 +6354,7 @@ if(!class_exists( 'STUser_f' )) {
                         $data_status =  self::_get_order_statuses(true);
                         if(!empty($data_status[$value->status])){
                             $status_string = $data_status[$value->status];
-                            if( isset( $value->cancel_refund_status ) && $value->cancel_refund_status == 'pending'){
+                            if( isset( $value->cancel_refund_status ) && $value->cancel_refund_status=== 'pending'){
                                 $status_string = __('Cancelling', ST_TEXTDOMAIN);								
                             }
                         }
