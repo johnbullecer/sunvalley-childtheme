@@ -24,7 +24,7 @@
 //book king history
   $lang['user_type'] = __('Type','traveler');
   $lang['user_booking_id'] = __('Booking ID','traveler'); //added booking id by clyde
-  $lang['user_title'] = __('Title','traveler');
+  $lang['user_title'] = __('Item','traveler'); //changed from title to item by clyde
   $lang['user_location'] = __('Location','traveler');
   $lang['user_order_date'] = __('Order Date','traveler');
   $lang['user_execution_date'] = __('Execution Time','traveler');
