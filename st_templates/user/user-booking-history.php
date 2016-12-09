@@ -39,7 +39,8 @@ $data_order_statuses = STUser_f::_get_order_statuses();
         <div class="tab-pane fade in active" id="tab-all">
             <?php
             if(!empty($html_all)){?>
-                <table class="table table-bordered table-striped table-booking-history">
+                <style>.booking-id{font-weight:bold;font-size:14px}.booking-id:hover{text-decoration: underline}</style>
+				<table class="table table-bordered table-striped table-booking-history">
                     <thead>
                     <tr>
                         <th><?php st_the_language('user_type')?></th>
