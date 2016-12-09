@@ -6295,7 +6295,7 @@ if(!class_exists( 'STUser_f' )) {
 							'st_action'=>'cancel_booking',
 							'order_item_id'=>$value->order_item_id
 						),get_permalink($user_url));
-						$action .= '<p><a  data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a><p>';
+						$action .= '<a  data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
 					}
 					/////CANCEL REQUEST by Clyde for woocommerce
 					if($value->type == 'woocommerce' && (($value->status==='wc-on-hold') || ($value->status==='wc-processing') || ($value->status==='wc-pending-payment')) ){
@@ -6309,15 +6309,15 @@ if(!class_exists( 'STUser_f' )) {
 						//$url=wp_nonce_url(admin_url('admin-ajax.php?action=mark_order_as_cancell_request&order_id=' . $value->wc_order_id));
 						//echo $url;
 						
-					    $action .= '<p><a data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a><p>';
+					    $action .= '<a data-toggle="modal" data-target="#cancel-booking-modal" class="btn btn-xs btn-primary mt5 confirm-cancel-booking" href="javascript: void(0);" data-order_id="'. $value->order_item_id .'" data-order_encrypt="'. TravelHelper::st_encrypt( $value->order_item_id ) .'">'. __('Cancel Booking', ST_TEXTDOMAIN).'</a>';
 					}
 					
 					//write a review - moved by clyde
 					 if(STReview::review_check($id_item) =='true') {
-                        $action .= '<p><a class="btn btn-xs btn-primary user_write_review" href="' . st_get_link_with_search( get_permalink( $user_url ) , array(
+                        $action .= '<a class="btn btn-xs mt5 btn-primary user_write_review" href="' . st_get_link_with_search( get_permalink( $user_url ) , array(
                                 'sc' ,
                                 'item_id'
-                            ) , $data ) . '">' . st_get_language( 'user_write_review' ) . '</a></p>';
+                            ) , $data ) . '">' . st_get_language( 'user_write_review' ) . '</a>';
 
                     }
                     else {
@@ -6365,11 +6365,9 @@ if(!class_exists( 'STUser_f' )) {
                             $address = get_post_meta($id_item, 'cars_address', true);
                         }
 						//added line 6367 to add booking-id and link to the order by clyde
+						//removed item type 1st column because it doesnt make sense
                         $html .= '
-                            <tr class="' . $id_item . '">
-                                <td class="booking-history-type ' . get_post_type( $id_item ) . '">
-                                   ' . $this->get_icon_type_order_item( $id_item ) . '
-                                </td>
+                            <tr class="' . $id_item . '">                                
 								<td class="booking-id"> <a href="' . get_site_url(null,'my-account/view-order') . '/' .$value->wc_order_id .'" title="Click to open booking details">' . $value->wc_order_id . '</a></td>
 								<td class="booking-history-title"> <a href="' . $this->get_link_order_item( $id_item ) . '">' . $this->get_title_order_item( $id_item ) . '</a></td>
                                 <td class="hidden-xs" >' .date_i18n( $format ,strtotime( $value->created) ) . '</td>
