@@ -35,3 +35,19 @@ function remove_style() {
      }
 }
 add_action( 'wp_enqueue_scripts','remove_style',100);
+
+/*
+//diagnose scripts and styles
+function td_inspect_scripts() {
+global $wp_scripts, $wp_styles;
+echo 'registered scripts<br>';
+foreach ($wp_scripts->queue as $handle) {
+echo $handle . ' | ' . $wp_scripts->registered[$handle]->src . '<br>';
+}
+echo 'registered styles<br>';
+foreach ($wp_styles->queue as $handle) {
+echo $handle . ' | ' . $wp_styles->registered[$handle]->src . '<br>';
+}
+}
+add_action( 'wp_print_scripts', 'td_inspect_scripts',9999);
+*/
