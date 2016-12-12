@@ -25,15 +25,10 @@ $data_order_statuses = STUser_f::_get_order_statuses();
     <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a href="#tab-all" data-toggle="tab"><?php _e("All",ST_TEXTDOMAIN) ?></a></li>
 		
-		<?php 
-        if(!empty($data_order_statuses)){
-            foreach($data_order_statuses as $k=>$v){
-                ?>
-                <li><a href="#tab-<?php echo esc_html($k) ?>" data-toggle="tab"><?php echo esc_html($v) ?></a></li>
-            <?php
-            }
-        }
-        ?>
+		<!-- removed PHP tabs and added tabs manually by clyde -->
+		<li><a href="#tab-wc-completed" data-toggle="tab"><?php _e("Completed",ST_TEXTDOMAIN) ?></a></li>
+		<li><a href="#tab-wc-cancelled" data-toggle="tab"><?php _e("Cancelled",ST_TEXTDOMAIN) ?></a></li> 
+		
     </ul>
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab-all">
@@ -42,11 +37,10 @@ $data_order_statuses = STUser_f::_get_order_statuses();
                 <style>.booking-id{font-weight:bold;font-size:14px}.booking-id:hover{text-decoration: underline}</style>
 				<table class="table table-bordered table-striped table-booking-history">
                     <thead>
-                    <tr>
-                        <th><?php st_the_language('user_type')?></th>
+                    <tr>                 
+					<!--//removed 1st column -item type and 4th column - location because it doesnt make sense   -->    
 						<th><?php st_the_language('user_booking_id')?></th>
                         <th><?php st_the_language('user_title')?></th>
-                        <th class="hidden-xs"><?php st_the_language('user_location') ?></th>
                         <th class="hidden-xs"><?php st_the_language('user_order_date')?></th>
                         <th class="hidden-xs"><?php st_the_language('user_execution_date') ?></th>
                         <th><?php st_the_language('user_cost') ?></th>
@@ -76,11 +70,10 @@ $data_order_statuses = STUser_f::_get_order_statuses();
                     if(!empty($html)){?>
                         <table class="table table-bordered table-striped table-booking-history">
                             <thead>
-                            <tr>
-                                <th><?php st_the_language('user_type')?></th>								
+                            <tr>	
+							<!--//removed 1st column -item type and 4th column - location because it doesnt make sense   --> 
 								<th><?php st_the_language('user_booking_id')?></th>
                                 <th><?php st_the_language('user_title')?></th>
-                                <th class="hidden-xs"><?php st_the_language('user_location') ?></th>
                                 <th class="hidden-xs"><?php st_the_language('user_order_date')?></th>
                                 <th class="hidden-xs"><?php st_the_language('user_execution_date') ?></th>
                                 <th><?php st_the_language('user_cost') ?></th>
