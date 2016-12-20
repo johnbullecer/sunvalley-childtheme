@@ -29,13 +29,21 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 	<table class="woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
 		<thead>
 			<tr>
-				<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
-					<th class="<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>
-				<?php endforeach; ?>
+				<!--//removed WC default headers and added Clyde's custom headers  -->  
+				<th><?php st_the_language('user_booking_id')?></th>
+				<th><?php st_the_language('user_order_date')?></th>				
+				<th><?php _e("Status",ST_TEXTDOMAIN) ?></th>
+				<th><?php st_the_language('user_cost') ?></th>
+				<th><?php st_the_language('action') ?></th>
 			</tr>
 		</thead>
 
 		<tbody>
+		<style>@media only screen and (min-width: 500px) {
+			.btn-group-xs>.btn, .btn-xs{ margin-right:8px;}
+			}
+			.btn-group-xs>.btn, .btn-xs{padding:4px 7px}
+		</style>
 			<?php foreach ( $customer_orders->orders as $customer_order ) :
 				$order      = wc_get_order( $customer_order );
 				$item_count = $order->get_item_count();
@@ -87,7 +95,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 									if ( $actions = apply_filters( 'woocommerce_my_account_my_orders_actions', $actions, $order ) ) {
 										foreach ( $actions as $key => $action ) {
-											echo '<a href="' . esc_url( $action['url'] ) . '" class="button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
+											echo '<a href="' . esc_url( $action['url'] ) . '" class="btn btn-xs btn-primary mt5 ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
 										}
 									}
 								?>
