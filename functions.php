@@ -39,7 +39,26 @@ function enqueue_child_styles(){
 
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 101);
 
+//remove menu navigation for woocommerce
 
+
+function remove_wc_menu(){
+	remove_action( 'woocommerce_account_navigation','woocommerce_account_navigation' );
+}
+add_action('remove_wc_menu','remove_wc_menu');
+do_action( 'remove_wc_menu' );
+
+
+//hook to add previous page link in WC My Account Orders page
+//still in progress
+function add_previous_page()
+{
+	//$previous_url = wp_http_referer();
+	//$back_link = '<p><a href="'.$previous_url.'">Go back to previous page</a></p>';
+	//return $back_link;
+	return "test";
+}
+//add_filter('woocommerce_before_account_orders', 'add_previous_page',1);
 
 /*
 //diagnose scripts and styles
