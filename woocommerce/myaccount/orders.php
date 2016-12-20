@@ -43,6 +43,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 			.btn-group-xs>.btn, .btn-xs{ margin-right:8px;}
 			}
 			.btn-group-xs>.btn, .btn-xs{padding:4px 7px}
+			.booking-id{font-weight:bold;font-size:14px}.booking-id:hover{text-decoration: underline}
 		</style>
 			<?php foreach ( $customer_orders->orders as $customer_order ) :
 				$order      = wc_get_order( $customer_order );
@@ -55,7 +56,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 								<?php do_action( 'woocommerce_my_account_my_orders_column_' . $column_id, $order ); ?>
 
 							<?php elseif ( 'order-number' === $column_id ) : ?>
-								<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
+								<a class="booking-id" href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
 									<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
 								</a>
 
