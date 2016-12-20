@@ -13,14 +13,12 @@ Template Name: Page No-Title
  *
  */
 get_header();
+
 ?> <style>.woocommerce-account .woocommerce-MyAccount-content{float:none}</style>
    <div class="container"><?php	
+	$bookhistory_url = get_permalink( get_page_by_title( 'User Account' ) ) . '?sc=booking-history' ;	
+	echo '<p style="margin:30px 0 30px"><a href="'. $bookhistory_url .'">Go back to your booking history</a></p>';
 	
-	if(!empty( $_REQUEST[ 'id_user' ] )) {
-		$bookhistory_url = get_permalink( get_page_by_title( 'User Account' ) ) . '?sc=booking-history' ;	
-		echo '<p style="margin:30px 0 30px"><a href="'. $bookhistory_url .'">Go back to your booking history</a></p>';
-	}
-
 	while(have_posts()){
     the_post();
     the_content();
