@@ -1,0 +1,7 @@
+/*
+* Styles to customize look of woocommerce elements
+*/
+pre{font-family: inherit;word-break: normal}
+.woocommerce-account .woocommerce-MyAccount-content{float:none}
+.woocommerce form .form-row{margin:-50px 10px -20px}
+.woocommerce form label{font-weight:bold;margin-bottom: -15px}
