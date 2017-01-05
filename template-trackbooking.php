@@ -22,17 +22,11 @@ if ( is_user_logged_in() ) {
 	exit;
 	
 } else {
-
+wp_dequeue_style('bootstrap.css');
+wp_deregister_style('bootstrap.css');
 get_header();
 ?>
-	<style>
-	.woocommerce-account .woocommerce-MyAccount-content{float:none}
-	pre{font-family: inherit;word-break: normal}
-	.woocommerce form .form-row{margin:-50px 10px -20px}
-	.cb-min-margin-top{margin:-70px 10px 0}
-	.woocommerce form label{font-weight:bold;margin-bottom: -15px}
-	.cb-min-margin-bottom{margin:-50px 10px}
-	</style>
+
 	<div class="container">
 		<div class="row" data-gutter="60">
 			<div class="col-md-4 mt30">
@@ -41,16 +35,15 @@ get_header();
                     <div class="mt5"><b><a class="btn-lg btn btn-primary" href="<?php echo get_permalink($page_user_register) ?>"><?php _e("Not yet a user? Register here!",ST_TEXTDOMAIN) ?></a></b></div>
                     <div class="mt15"><?php do_action( 'wordpress_social_login' ); ?></div>
 			</div>
-			<div class="col-md-5 mt30">
 			
-			<h3 class="mb15"><?php the_title(); ?></h3>
-			
-			<?php
-				while(have_posts()){
-				the_post();
-				the_content();
-				}
-			?>
+			<div class="col-md-6 mt30">
+				<h3 class="mb15"><?php the_title(); ?></h3>
+				<?php
+					while(have_posts()){
+                        the_post();
+                        the_content();
+                    }
+				?>
 			</div>			
 		</div>
 	</div>
