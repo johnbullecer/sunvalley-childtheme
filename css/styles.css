@@ -123,17 +123,22 @@ blockquote,body
 
 body
 {
-	color:#737373;
-	font-family:'Open Sans',Tahoma,Arial,helvetica,sans-serif;
+	/*changed color*/
+	color:#484848;
 	font-size:14px;
 	line-height:1.6em;
 	font-weight:400;
 	overflow:auto
 }
-
-.text-hero,h1,h2,h3,h4,h5,ul.slimmenu li a
+/*changed font fam*/
+.text-hero,h2,h3,h4,h5
 {
-	font-family:Roboto,arial,helvetica,sans-serif
+	font-family:'Raleway',arial,helvetica,sans-serif
+}
+/*changed font fam*/
+body, h1,ul.slimmenu li a,.text-uc,.text-center,.booking-item-title,.fc-toolbar h2,.vc_toggle_title h4
+{
+	font-family:'Open Sans',arial,helvetica,sans-serif
 }
 
 .hover-img,.post,.testimonial .testimonial-author,.thumb-list>li
@@ -161,9 +166,19 @@ a:hover
 .text-hero,h1,h2,h3,h4,h5
 {
 	margin-top:0;
-	font-weight:500;
 	color:#565656;
 	line-height:1.3em
+}
+
+/*added by clyde h1*/
+h1{
+	font-weight:300;
+}
+
+/*changed font weight from 300*/
+.text-hero,h2,h3,h4,h5
+{
+	font-weight:400;
 }
 
 .text-hero.bolded,h1.bolded,h2.bolded,h3.bolded,h4.bolded,h5.bolded
@@ -206,7 +221,7 @@ h4
 h5
 {
 	font-size:18.2px;
-	font-weight:300
+	font-weight:400
 }
 
 *>small,small
@@ -1467,7 +1482,8 @@ ul.slimmenu li a
 	display:block;
 	padding:12px 20px;
 	font-size:15px;
-	color:#737373;
+	/*changed color*/
+	color:#666;
 	-webkit-transition:background-color .17s ease-out;
 	-moz-transition:background-color .17s ease-out;
 	-o-transition:background-color .17s ease-out;
