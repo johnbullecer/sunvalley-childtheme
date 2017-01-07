@@ -1214,7 +1214,6 @@ ul.list.list-inline a i {
     opacity: 1;
     padding: 0 0 0 13px;
     position: absolute;
-    text-shadow: 1px 0 0 hsla(20,50%,30%,.6);
     top: 5px;
     z-index: 9
 }
