@@ -23,11 +23,14 @@ function remove_style() {
 		wp_dequeue_style('custom.css');
 		wp_dequeue_style('custom2css');
 		wp_dequeue_style('availability');
+		wp_dequeue_style('hover_effect_normal');
+		
 		
 		wp_deregister_style( 'styles.css' );
 		wp_deregister_style( 'custom.css' );	
 		wp_deregister_style('custom2css');
 		wp_deregister_style('availability');
+		wp_deregister_style('hover_effect_normal');
      }
 }
 add_action( 'wp_enqueue_scripts','remove_style',50);
@@ -39,7 +42,8 @@ function register_child_styles(){
 	wp_register_style( 'styles.css', get_stylesheet_directory_uri() . '/css/styles.css');
 	wp_register_style( 'custom.css', get_stylesheet_directory_uri() . '/css/custom.css');
 	wp_register_style( 'custom2css', get_stylesheet_directory_uri() . '/css/custom2.css');
-	wp_register_style( 'availability', get_stylesheet_directory_uri() . '/css/availability.css');
+	wp_register_style( 'availability', get_stylesheet_directory_uri() . '/css/availability.css');	
+	wp_register_style( 'hover_effect_normal', get_stylesheet_directory_uri() . '/css/hover_effect/normalize.css');
 	
 }
 add_action( 'wp_enqueue_scripts', 'register_child_styles', 52);
@@ -52,6 +56,7 @@ function enqueue_child_styles(){
 	wp_enqueue_style( 'custom.css');
 	wp_enqueue_style( 'custom2css');
 	wp_enqueue_style( 'availability');
+	wp_enqueue_style( 'hover_effect_normal');
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles', 100);
 
